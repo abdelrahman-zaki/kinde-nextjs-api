@@ -17,7 +17,7 @@ export async function POST(request) {
 
   return json({
     email_verified: true,
-    name: 'Zaki'
+    name: 'Abdelrahman Zaki'
   });
 }
 
