@@ -3,8 +3,8 @@ import { json, badRequest, methodNotAllowed } from '@/lib/http';
 export const runtime = 'edge';
 export const dynamic = 'force-dynamic';
 
-export async function POST(request) {
-  let body;
+export async function POST(request: Request) {
+  let body: any;
   try {
     body = await request.json();
   } catch {
@@ -15,9 +15,12 @@ export async function POST(request) {
     return badRequest('`email` is required');
   }
 
+  const email = body.email.trim().toLowerCase();
+  const isKindeEmail = email.endsWith('@kinde.com');
+
   return json({
-    email_verified: false,
-    name: 'Abdelrahman Zaki'
+    email_verified: isKindeEmail,
+    name: 'Abdelrahman Zaki',
   });
 }
 
